@@ -28,6 +28,11 @@ Ask only critical questions where the initial prompt is ambiguous. Focus on:
 - **Core Functionality:** What are the key actions?
 - **Scope/Boundaries:** What should it NOT do?
 - **Success Criteria:** How do we know it's done?
+- **Target US id**: What is the target user story ID prefix (e.g., US-, FEAT-, TASK-)?
+
+---
+
+## Example
 
 ### Format Questions Like This:
 
@@ -196,7 +201,7 @@ Add priority levels to tasks so users can focus on what matters most. Tasks can 
 
 ## Functional Requirements
 
-- FR-1: Add `priority` field to tasks table ('high' | 'medium' | 'low', default 'medium')
+- FR-1: Add `priority` field to tasks table ('high' | 'medium' | 'low' | 'default' | 'medium')
 - FR-2: Display colored priority badge on each task card
 - FR-3: Include priority selector in task edit modal
 - FR-4: Add priority filter dropdown to task list header
@@ -238,3 +243,4 @@ Before saving the PRD:
 - [ ] Functional requirements are numbered and unambiguous
 - [ ] Non-goals section defines clear boundaries
 - [ ] Saved to `tasks/prd-[feature-name].md`
+- [ ] Publish the PRD content on outline with link to the file and the PRD name as title
