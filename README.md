@@ -18,9 +18,19 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 
 ## Setup
 
-### Option 1: Copy to your project
+### Option 1: Use the Setup Script (Recommended)
 
-Copy the ralph files into your project:
+Run the interactive setup script to link Ralph to your target project. This creates symbolic links so your project always uses the latest version of Ralph.
+
+```bash
+./setup_ralph.sh
+```
+
+Follow the prompts to specify your target project directory. The script will automatically configure symbolic links for `ralph.sh`, `CLAUDE.md`, and the `skills` directory (detecting if you use `.claude` or `.github`), plus initialize necessary files.
+
+### Option 2: Manual Copy
+
+If you prefer to copy the files manually:
 
 ```bash
 # From your project root
@@ -83,7 +93,10 @@ Use the Ralph skill to convert the markdown PRD to JSON:
 Load the ralph skill and convert tasks/prd-[feature-name].md to prd.json
 ```
 
-This creates `prd.json` with user stories structured for autonomous execution.
+This process:
+1. Creates individual tickets in **Linear**.
+2. Generates a `prd.json` file linking these tickets (IDs, URLs) for Ralph to process.
+3. Publishes a summary table to **Outline**.
 
 ### 3. Run Ralph
 
@@ -100,12 +113,14 @@ Default is 10 iterations. Use `--tool amp` or `--tool claude` to select your AI 
 Ralph will:
 1. Create a feature branch (from PRD `branchName`)
 2. Pick the highest priority story where `passes: false`
-3. Implement that single story
-4. Run quality checks (typecheck, tests)
-5. Commit if checks pass
-6. Update `prd.json` to mark story as `passes: true`
-7. Append learnings to `progress.txt`
-8. Repeat until all stories pass or max iterations reached
+3. Update the **Linear** ticket status to `In Progress`
+4. Implement that single story
+5. Run quality checks (typecheck, tests)
+6. Commit if checks pass
+7. Update `prd.json` to mark story as `passes: true`
+8. Update the **Linear** ticket status to `Ready to Verify`
+9. Append learnings to `progress.txt` and update the **Outline** document
+10. Repeat until all stories pass or max iterations reached
 
 ## Key Files
 
@@ -114,7 +129,7 @@ Ralph will:
 | `ralph.sh` | The bash loop that spawns fresh AI instances (supports `--tool amp` or `--tool claude`) |
 | `prompt.md` | Prompt template for Amp |
 | `CLAUDE.md` | Prompt template for Claude Code |
-| `prd.json` | User stories with `passes` status (the task list) |
+| `prd.json` | JSON file linking User Stories to Linear tickets and tracking pass status |
 | `prd.json.example` | Example PRD format for reference |
 | `progress.txt` | Append-only learnings for future iterations |
 | `skills/prd/` | Skill for generating PRDs |
