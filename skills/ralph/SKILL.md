@@ -134,12 +134,13 @@ Each is one focused change that can be completed and verified independently.
 Add ability to mark tasks with different statuses.
 
 ## Requirements
-- Toggle between pending/in-progress/done on tasks
+- Toggle between pending/in-progress/ready to verify/done on tasks
 - Filter list by status
 - Change status in task service
+
 ```
 
-**Output prd.json:**
+**Example Output prd.json:**
 ```json
 {
   "project": "TaskApp",
@@ -148,19 +149,27 @@ Add ability to mark tasks with different statuses.
   "userStories": [
     {
       "id": "US-001",
-      "linear_url": "https://linear.app/your-project/issue/US-001"
+      "linear_url": "https://linear.app/your-project/issue/US-001",
+      "passes": false,
+      "priority": "LOW | MEDIUM | HIGH | URGENT"
     },
     {
       "id": "US-002",
-      "linear_url": "https://linear.app/your-project/issue/US-002"
+      "linear_url": "https://linear.app/your-project/issue/US-002",
+      "passes": false,
+      "priority": "LOW | MEDIUM | HIGH | URGENT"
     },
     {
       "id": "US-003",
-      "linear_url": "https://linear.app/your-project/issue/US-003"
+      "linear_url": "https://linear.app/your-project/issue/US-003",
+      "passes": false,
+      "priority": "LOW | MEDIUM | HIGH | URGENT"
     },
     {
       "id": "US-004",
-      "linear_url": "https://linear.app/your-project/issue/US-004"
+      "linear_url": "https://linear.app/your-project/issue/US-004",
+      "passes": false,
+      "priority": "LOW | MEDIUM | HIGH | URGENT"
     }
   ]
 }

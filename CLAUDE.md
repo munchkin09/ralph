@@ -7,13 +7,16 @@ You are an autonomous coding agent working on a software project.
 1. Read the PRD at `prd.json` (in the same directory as this file)
 2. Read the progress log at `progress.txt` (check Codebase Patterns section first)
 3. Check you're on the correct branch from PRD `branchName`. If not, check it out or create from main.
-4. Pick the **highest priority** user story where `passes: false`
-5. Implement that single user story
+4. Pick the **highest priority** user story where `passes: false` update the linear issue associated status to `In progress`
+5. Implement that single user story in a diferent branch with name `branchName/<Story ID>`
 6. Run quality checks (e.g., typecheck, lint, test - use whatever your project requires)
 7. Update CLAUDE.md files if you discover reusable patterns (see below)
 8. If checks pass, commit ALL changes with message: `feat: [Story ID] - [Story Title]`
-9. Update the PRD to set `passes: true` for the completed story
-10. Append your progress to `progress.txt`
+9. Create a PR on github repo to `branchName` with the new content
+10. Update the linear ticket status to `Ready to verify`
+11. Append your progress to `progress.txt`
+12. Update outline document `PROJECT->TASKS->[Story ID]` with new content added to `progress.txt`
+13. Update linear ticket with a comment with the outline document url
 
 ## Progress Report Format
 
@@ -72,7 +75,7 @@ Only update CLAUDE.md if you have **genuinely reusable knowledge** that would he
 
 ## Quality Requirements
 
-- ALL commits must pass your project's quality checks (typecheck, lint, test)
+- ALL commits must pass your project's quality checks (typecheck, lint, test). If not applicable, justify it.
 - Do NOT commit broken code
 - Keep changes focused and minimal
 - Follow existing code patterns

@@ -6,21 +6,23 @@ You are an autonomous coding agent working on a software project.
 
 1. Read the PRD at `prd.json` (in the same directory as this file)
 2. Read the progress log at `progress.txt` (check Codebase Patterns section first)
-3. Check you're on the correct branch from PRD `branchName`. If not, check it out or create from main.
-4. Pick the **highest priority** user story where `passes: false`
-5. Implement that single user story
+3. Check you're on the correct branch from PRD `branchName`. If not, check it out or create from develop.
+4. Pick the **highest priority** user story where `passes: false` update the linear issue associated status to `In progress`
+5. Implement that single user story in a diferent branch with name `branchName/<Story ID>`
 6. Run quality checks (e.g., typecheck, lint, test - use whatever your project requires)
-7. Update AGENTS.md files if you discover reusable patterns (see below)
+7. Update CLAUDE.md files if you discover reusable patterns (see below)
 8. If checks pass, commit ALL changes with message: `feat: [Story ID] - [Story Title]`
-9. Update the PRD to set `passes: true` for the completed story
-10. Append your progress to `progress.txt`
+9. Create a PR on github repo to `branchName` with the new content
+10. Update the linear ticket status to `Ready to verify`
+11. Append your progress to `progress.txt`
+12. Update outline document `PROJECT->TASKS->[Story ID]` with same content as progress.txt
+13. Update linear ticket with a comment with the outline document url
 
 ## Progress Report Format
 
 APPEND to progress.txt (never replace, always append):
 ```
 ## [Date/Time] - [Story ID]
-Thread: https://ampcode.com/threads/$AMP_CURRENT_THREAD_ID
 - What was implemented
 - Files changed
 - **Learnings for future iterations:**
@@ -29,8 +31,6 @@ Thread: https://ampcode.com/threads/$AMP_CURRENT_THREAD_ID
   - Useful context (e.g., "the evaluation panel is in component X")
 ---
 ```
-
-Include the thread URL so future iterations can use the `read_thread` tool to reference previous work if needed.
 
 The learnings section is critical - it helps future iterations avoid repeating mistakes and understand the codebase better.
 
@@ -47,12 +47,12 @@ If you discover a **reusable pattern** that future iterations should know, add i
 
 Only add patterns that are **general and reusable**, not story-specific details.
 
-## Update AGENTS.md Files
+## Update CLAUDE.md Files
 
-Before committing, check if any edited files have learnings worth preserving in nearby AGENTS.md files:
+Before committing, check if any edited files have learnings worth preserving in nearby CLAUDE.md files:
 
 1. **Identify directories with edited files** - Look at which directories you modified
-2. **Check for existing AGENTS.md** - Look for AGENTS.md in those directories or parent directories
+2. **Check for existing CLAUDE.md** - Look for CLAUDE.md in those directories or parent directories
 3. **Add valuable learnings** - If you discovered something future developers/agents should know:
    - API patterns or conventions specific to that module
    - Gotchas or non-obvious requirements
@@ -60,7 +60,7 @@ Before committing, check if any edited files have learnings worth preserving in 
    - Testing approaches for that area
    - Configuration or environment requirements
 
-**Examples of good AGENTS.md additions:**
+**Examples of good CLAUDE.md additions:**
 - "When modifying X, also update Y to keep them in sync"
 - "This module uses pattern Z for all API calls"
 - "Tests require the dev server running on PORT 3000"
@@ -71,25 +71,24 @@ Before committing, check if any edited files have learnings worth preserving in 
 - Temporary debugging notes
 - Information already in progress.txt
 
-Only update AGENTS.md if you have **genuinely reusable knowledge** that would help future work in that directory.
+Only update CLAUDE.md if you have **genuinely reusable knowledge** that would help future work in that directory.
 
 ## Quality Requirements
 
-- ALL commits must pass your project's quality checks (typecheck, lint, test)
+- ALL commits must pass your project's quality checks (typecheck, lint, test). If not applicable, justify it.
 - Do NOT commit broken code
 - Keep changes focused and minimal
 - Follow existing code patterns
 
-## Browser Testing (Required for Frontend Stories)
+## Browser Testing (If Available)
 
-For any story that changes UI, you MUST verify it works in the browser:
+For any story that changes UI, verify it works in the browser if you have browser testing tools configured (e.g., via MCP):
 
-1. Load the `dev-browser` skill
-2. Navigate to the relevant page
-3. Verify the UI changes work as expected
-4. Take a screenshot if helpful for the progress log
+1. Navigate to the relevant page
+2. Verify the UI changes work as expected
+3. Take a screenshot if helpful for the progress log
 
-A frontend story is NOT complete until browser verification passes.
+If no browser tools are available, note in your progress report that manual browser verification is needed.
 
 ## Stop Condition
 
