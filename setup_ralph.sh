@@ -41,7 +41,7 @@ echo "==================================================="
 echo "  Welcome to Ralph Setup!"
 echo "==================================================="
 echo ""
-read -p "Enter the path to target folder: " TARGET_FOLDER
+read -p "Enter the path to target repo folder: " TARGET_FOLDER
     
 # Trim whitespace
 TARGET_FOLDER=$(echo "$TARGET_FOLDER" | xargs)
