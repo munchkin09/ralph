@@ -7,19 +7,26 @@ Ralph is an autonomous AI agent loop that runs AI coding tools ([Amp](https://am
 Based on Geoffrey Huntley's Ralph pattern. Now integrated with **Linear** for task management and **Outline** for documentation.
 
 
-[Read my in-depth article on how I use Ralph](https://x.com/ryancarson/status/2008548371712135632)
+[Read the Ryan Carson in-depth article on how he use Ralph](https://x.com/ryancarson/status/2008548371712135632)
 
 ## Prerequisites
 
 - One of the following AI coding tools installed and authenticated:
   - [Amp CLI](https://ampcode.com) (default)
   - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
+  - [VSCode Copilot](https://marketplace.visualstudio.com/items?itemName=copilot.copilot)
+  - [Copilot CLI](https://github.com/features/copilot/cli)
 - `jq` installed (`brew install jq` on macOS)
 - A git repository for your project
 
 ## Setup
 
 ### Option 1: Use the Setup Script (Recommended)
+
+Clone this repo
+```bash
+git clone https://github.com/munchkin09/ralph.git
+```
 
 Run the interactive setup script to link Ralph to your target project. This creates symbolic links so your project always uses the latest version of Ralph.
 
@@ -91,12 +98,13 @@ Answer the clarifying questions. The skill saves output to `tasks/prd-[feature-n
 Use the Ralph skill to convert the markdown PRD to JSON:
 
 ```
-Load the ralph skill and convert tasks/prd-[feature-name].md to prd.json
+Load the ralph skill and convert tasks/prd-[feature-name].md to prd.json|ralph_stories.json
+
 ```
 
 This process:
 1. Creates individual tickets in **Linear**.
-2. Generates a `prd.json` file linking these tickets (IDs, URLs) for Ralph to process.
+2. Generates a `prd.json|ralph_stories.json` file linking these tickets (IDs, URLs) for Ralph to process.
 3. Publishes a summary table to **Outline**.
 
 ### 3. Run Ralph
