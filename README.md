@@ -126,7 +126,7 @@ Ralph will:
 4. Implement that single story
 5. Run quality checks (typecheck, tests)
 6. Commit if checks pass
-7. Update `prd.json` to mark story as `passes: true`
+7. Update `prd.json|ralph_stories.json` to mark story as `passes: true`
 8. Update the **Linear** ticket status to `Ready to Verify`
 9. Append learnings to `progress.txt` and update the **Outline** document
 10. Repeat until all stories pass or max iterations reached
